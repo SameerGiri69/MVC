@@ -13,10 +13,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<Seed>();
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConenction"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+
+
 var app = builder.Build();
+
+
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
     SeedData(app);
 
