@@ -3,7 +3,7 @@
     public class PokemonOwner
     {
         public int PokemonId { get; set; }
-        public int OwenrId { get; set; }
+        public int OwnerId { get; set; }
         public Pokemons? Pokemons { get; set; }
         public Owner? Owner { get; set; }
     }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vh5btCcc+c7dTOl9CeJKmUHkGCjeBHDBiOKDSdmGRVNve8r8nN/1oFNvgcEPXZeJg4TOsEDNUd9byZnsb6upcQ==",
+  "dgSpecHash": "guH5zQVsRWrN0GheZ0ZGXshZIzkgPytmGWclZaAZZZnw0QtCBy6PzaoKuiX5UAeYeXHjKBf9nsrStRQp4mDOGg==",
   "success": true,
   "projectFilePath": "C:\\Users\\HogRider\\source\\repos\\WEBSITE101\\WEBSITE101\\WEBSITE101.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.13\\microsoft.entityframeworkcore.design.7.0.13.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.13\\microsoft.entityframeworkcore.relational.7.0.13.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.13\\microsoft.entityframeworkcore.sqlserver.7.0.13.nupkg.sha512",
+    "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.13\\microsoft.entityframeworkcore.tools.7.0.13.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
