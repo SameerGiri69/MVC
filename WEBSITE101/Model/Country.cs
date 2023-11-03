@@ -6,5 +6,6 @@ namespace WEBSITE101.Model
     {
         public int Id { get; set; }
         public string? Name { get; set; }
+        public List<Owner> Owners { get; set; }
     }
 }
