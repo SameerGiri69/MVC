@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WEBSITE101.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,12 +91,15 @@ namespace WEBSITE101.Migrations
                 name: "PokemonCategories",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PokemonId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    PokemonsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PokemonCategories", x => new { x.PokemonId, x.CategoryId });
+                    table.PrimaryKey("PK_PokemonCategories", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PokemonCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -104,11 +107,10 @@ namespace WEBSITE101.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PokemonCategories_Pokemons_PokemonId",
-                        column: x => x.PokemonId,
+                        name: "FK_PokemonCategories_Pokemons_PokemonsId",
+                        column: x => x.PokemonsId,
                         principalTable: "Pokemons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -118,10 +120,10 @@ namespace WEBSITE101.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReviewerId = table.Column<int>(type: "int", nullable: false),
-                    PokemonId = table.Column<int>(type: "int", nullable: false)
+                    ReviewerId = table.Column<int>(type: "int", nullable: true),
+                    PokemonId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -130,26 +132,27 @@ namespace WEBSITE101.Migrations
                         name: "FK_Reviews_Pokemons_PokemonId",
                         column: x => x.PokemonId,
                         principalTable: "Pokemons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reviews_Reviewers_ReviewerId",
                         column: x => x.ReviewerId,
                         principalTable: "Reviewers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "PokemonOwners",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PokemonId = table.Column<int>(type: "int", nullable: false),
-                    OwnerId = table.Column<int>(type: "int", nullable: false)
+                    OwnerId = table.Column<int>(type: "int", nullable: false),
+                    PokemonsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PokemonOwners", x => new { x.PokemonId, x.OwnerId });
+                    table.PrimaryKey("PK_PokemonOwners", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PokemonOwners_Owners_OwnerId",
                         column: x => x.OwnerId,
@@ -157,11 +160,10 @@ namespace WEBSITE101.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PokemonOwners_Pokemons_PokemonId",
-                        column: x => x.PokemonId,
+                        name: "FK_PokemonOwners_Pokemons_PokemonsId",
+                        column: x => x.PokemonsId,
                         principalTable: "Pokemons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -175,9 +177,19 @@ namespace WEBSITE101.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PokemonCategories_PokemonsId",
+                table: "PokemonCategories",
+                column: "PokemonsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PokemonOwners_OwnerId",
                 table: "PokemonOwners",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PokemonOwners_PokemonsId",
+                table: "PokemonOwners",
+                column: "PokemonsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_PokemonId",
