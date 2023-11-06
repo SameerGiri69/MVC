@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "E6FQ1GeiHXvFEONWaddy8nOqweL5Muo+BkJETo7nte0vKjHX6B2f5jvCy2rqMjouUzLYJXsVNu9S8WIEr4Rv7A==",
+  "dgSpecHash": "WaxlCNxnLL8Ozy3RUndN+xS8A7IGNvgqgPN3ip5zo3Fe5f/Z032M/W+9fhS7iLTbStptrb2/EluNPpoiYXCrvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\HogRider\\source\\repos\\WEBSITE101\\WEBSITE101\\WEBSITE101.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\HogRider\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.0\\microsoft.data.sqlclient.sni.runtime.5.1.0.nupkg.sha512",
     "C:\\Users\\HogRider\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.13\\microsoft.entityframeworkcore.7.0.13.nupkg.sha512",

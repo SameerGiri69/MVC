@@ -5,6 +5,7 @@ C:\Users\HogRider\source\repos\WEBSITE101\WEBSITE101\bin\Debug\net6.0\WEBSITE101
 C:\Users\HogRider\source\repos\WEBSITE101\WEBSITE101\bin\Debug\net6.0\WEBSITE101.runtimeconfig.json
 C:\Users\HogRider\source\repos\WEBSITE101\WEBSITE101\bin\Debug\net6.0\WEBSITE101.dll
 C:\Users\HogRider\source\repos\WEBSITE101\WEBSITE101\bin\Debug\net6.0\WEBSITE101.pdb
+C:\Users\HogRider\source\repos\WEBSITE101\WEBSITE101\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\HogRider\source\repos\WEBSITE101\WEBSITE101\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\HogRider\source\repos\WEBSITE101\WEBSITE101\bin\Debug\net6.0\Azure.Identity.dll
 C:\Users\HogRider\source\repos\WEBSITE101\WEBSITE101\bin\Debug\net6.0\Humanizer.dll

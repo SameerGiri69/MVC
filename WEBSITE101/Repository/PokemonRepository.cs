@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 using WEBSITE101.Data;
+using WEBSITE101.DTO;
 using WEBSITE101.Interface;
 using WEBSITE101.Model;
 
@@ -14,9 +16,16 @@ namespace WEBSITE101.Repository
             _context = context;
         }
 
-        public bool AddPokemon(Pokemons pokemon)
+        public bool AddPokemon(PokemonDto pokemon)
         {
-            _context.Pokemons.Add(pokemon);
+            Pokemons pokemons = new Pokemons()
+            {
+           
+                Name = pokemon.Name,
+                BirthDate = pokemon.BirthDate,
+                    
+            };
+            _context.Pokemons.Add(pokemons);
             var rowsAffected = _context.SaveChanges();
             if (rowsAffected < 1)
             {
@@ -25,17 +34,39 @@ namespace WEBSITE101.Repository
                 return true;
         }
 
-        public bool DeletePokemon(Pokemons pokemon)
+        public bool DeletePokemon(int pokeId)
         {
+            var pokemon = _context.Pokemons.Where(x => x.Id == pokeId).FirstOrDefault();
             _context.Pokemons.Remove(pokemon);
-            _context.SaveChanges();
+            var rowsAffected = _context.SaveChanges();
+            if(rowsAffected <= 0)
+                return false;
             return true;
         }
+        public bool UpdatePokemon(PokemonDto pokemon)
+        {
+         
+         
+            var poke = _context.Pokemons.Where(x => x.Id == pokemon.Id).FirstOrDefault();
+            poke.Name = pokemon.Name;
+            poke.BirthDate = pokemon.BirthDate;
+            _context.Pokemons.Update(poke);
+            var rowsAffected = _context.SaveChanges();
 
-        public Pokemons GetPokemon(int id)
+            return rowsAffected < 1 ? false : true; 
+
+
+        }
+
+        public PokemonDto GetPokemon(int id)
 
         {
-           return _context.Pokemons.Where(x=>x.Id==id).FirstOrDefault();
+           var pokemon =  _context.Pokemons.Where(x=>x.Id==id).FirstOrDefault();
+            PokemonDto poke = new PokemonDto();
+            poke.Id = pokemon.Id;
+            poke.Name = pokemon.Name;
+            poke.BirthDate = pokemon.BirthDate;
+            return poke;
         }
 
         public Pokemons GetPokemon(string name)
@@ -43,10 +74,42 @@ namespace WEBSITE101.Repository
             return _context.Pokemons.Where(x => x.Name == name).FirstOrDefault();
         }
 
-        public List<Pokemons> GetPokemons()
+        public decimal GetPokemonRating(int pokeId)
         {
-            return _context.Pokemons.Include(x=>x.PokemonCategories ).Include(x=> x.Reviews).ToList();
+            var review = _context.Reviews.FirstOrDefault(r => r.Pokemon.Id == pokeId);
+
+            if (review == null)
+                return 0; 
+
+            return Convert.ToDecimal(review.Rating);
+        }
+    
+
+
+        public List<PokemonDto> GetPokemons()
+        {
+            List<Pokemons>? result = _context.Pokemons
+                .Include(x => x.Reviews)
+                .Include(y => y.PokemonCategories)
+                .ToList();
+            List < PokemonDto > dtos = new List<PokemonDto>();
+            foreach(var item in result)
+            {
+                PokemonDto obj = new PokemonDto()
+                {
+                    Name = item.Name,
+                    BirthDate = item.BirthDate,
+                };
+                dtos.Add(obj);
+            }
+            return dtos;
 
         }
+        public bool PokemonExists(int pokeId)
+        {
+           return _context.Pokemons.Any(x => x.Id == pokeId);
+        }
+
+        
     }
 }

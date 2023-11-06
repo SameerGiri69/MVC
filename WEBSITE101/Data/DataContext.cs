@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WEBSITE101.DTO;
 using WEBSITE101.Model;
 
 namespace WEBSITE101.Data
@@ -17,6 +18,7 @@ namespace WEBSITE101.Data
         public DbSet<Pokemons> Pokemons { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Reviewer> Reviewers { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
