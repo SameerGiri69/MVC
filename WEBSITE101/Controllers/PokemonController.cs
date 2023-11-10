@@ -60,6 +60,7 @@ namespace WEBSITE101.Controllers
             return Ok(rating);
         }
         [HttpPost]
+        [ProducesResponseType(400)]
         public IActionResult AddPokemon(PokemonDto pokemonDto)
         {
             var result = _pokemonRepository.AddPokemon(pokemonDto);
@@ -68,6 +69,7 @@ namespace WEBSITE101.Controllers
             return Ok();
         }
         [HttpDelete]
+        [ProducesResponseType(400)]
         public IActionResult DeletePokemon(int pokeId)
         {
             var result = _pokemonRepository.DeletePokemon(pokeId);

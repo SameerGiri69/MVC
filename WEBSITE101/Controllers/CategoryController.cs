@@ -16,6 +16,7 @@ namespace WEBSITE101.Controllers
             _categoryRepository = categoryRepository;
         }
         [HttpPost]
+        [ProducesResponseType(400)]
         public IActionResult AddCategory(string name)
         {
             CategoryDto categoryDto = new CategoryDto();
@@ -45,6 +46,8 @@ namespace WEBSITE101.Controllers
                 return NotFound();
             return Ok();
         }
+        [HttpDelete]
+        [ProducesResponseType(400)]
         public IActionResult DeleteCategory(int id)
         {
             var result = _categoryRepository.DeleteCategory(id);

@@ -1,10 +1,15 @@
-﻿namespace WEBSITE101.Interface
+﻿using WEBSITE101.DTO;
+
+namespace WEBSITE101.Interface
 {
     public interface ICountryRepository
     {
-        bool GetCountry(int countryId);
-        bool AddCountry(string countryName);
-        bool DeleteCountry(string countryName);
+        CountryDto GetCountryById(int countryId);
+        CountryDto GetCountryByName(string name);
+        bool AddCountry(CountryDto countryDto);
+        bool DeleteCountry(int countryId);
+        bool UpdateCountry(string countryName);
+        bool CountryExists(int countryId);
 
 
     }

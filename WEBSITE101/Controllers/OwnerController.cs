@@ -42,7 +42,17 @@ namespace WEBSITE101.Controllers
                 return NotFound();
             return Ok();
         }
-        
+        [HttpDelete]
+        [ProducesResponseType(200)]
+        public IActionResult DeleteOwner(int ownerId)
+        {
+            var result = _ownerRepository.DeleteOwner(ownerId);
+            if (result == false)
+                return BadRequest();
+            return Ok();
+
+        }
+
 
     }
 }
