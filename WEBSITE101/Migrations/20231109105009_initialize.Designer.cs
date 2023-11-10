@@ -12,8 +12,8 @@ using WEBSITE101.Data;
 namespace WEBSITE101.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231105092704_initd")]
-    partial class initd
+    [Migration("20231109105009_initialize")]
+    partial class initialize
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace WEBSITE101.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -86,52 +86,30 @@ namespace WEBSITE101.Migrations
 
             modelBuilder.Entity("WEBSITE101.Model.PokemonCategory", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("PokemonId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PokemonId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PokemonsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("PokemonId", "CategoryId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("PokemonsId");
 
                     b.ToTable("PokemonCategories");
                 });
 
             modelBuilder.Entity("WEBSITE101.Model.PokemonOwner", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("PokemonId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PokemonId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PokemonsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("PokemonId", "OwnerId");
 
                     b.HasIndex("OwnerId");
-
-                    b.HasIndex("PokemonsId");
 
                     b.ToTable("PokemonOwners");
                 });
@@ -166,7 +144,7 @@ namespace WEBSITE101.Migrations
                     b.Property<int?>("PokemonId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Rating")
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
                     b.Property<int?>("ReviewerId")
@@ -211,10 +189,8 @@ namespace WEBSITE101.Migrations
             modelBuilder.Entity("WEBSITE101.Model.Owner", b =>
                 {
                     b.HasOne("WEBSITE101.Model.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Owners")
+                        .HasForeignKey("CountryId");
 
                     b.Navigation("Country");
                 });
@@ -229,7 +205,9 @@ namespace WEBSITE101.Migrations
 
                     b.HasOne("WEBSITE101.Model.Pokemons", "Pokemons")
                         .WithMany("PokemonCategories")
-                        .HasForeignKey("PokemonsId");
+                        .HasForeignKey("PokemonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
@@ -246,7 +224,9 @@ namespace WEBSITE101.Migrations
 
                     b.HasOne("WEBSITE101.Model.Pokemons", "Pokemons")
                         .WithMany("PokemonOwners")
-                        .HasForeignKey("PokemonsId");
+                        .HasForeignKey("PokemonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Owner");
 
@@ -271,6 +251,11 @@ namespace WEBSITE101.Migrations
             modelBuilder.Entity("WEBSITE101.Model.Category", b =>
                 {
                     b.Navigation("PokemonCategories");
+                });
+
+            modelBuilder.Entity("WEBSITE101.Model.Country", b =>
+                {
+                    b.Navigation("Owners");
                 });
 
             modelBuilder.Entity("WEBSITE101.Model.Owner", b =>

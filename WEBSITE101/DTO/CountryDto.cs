@@ -1,8 +1,8 @@
-﻿using System.Security.Principal;
+﻿using WEBSITE101.Model;
 
-namespace WEBSITE101.Model
+namespace WEBSITE101.DTO
 {
-    public class Country
+    public class CountryDto
     {
         public int Id { get; set; }
         public string? Name { get; set; }

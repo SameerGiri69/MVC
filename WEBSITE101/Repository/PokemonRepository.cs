@@ -7,6 +7,7 @@ using WEBSITE101.Model;
 
 namespace WEBSITE101.Repository
 {
+    //Repository defines logic for CRUD operations (create, read, update, delete)
     public class PokemonRepository : IPokemonRepository
     {
         private readonly DataContext _context;
@@ -15,7 +16,7 @@ namespace WEBSITE101.Repository
         {
             _context = context;
         }
-
+        //Create
         public bool AddPokemon(PokemonDto pokemon)
         {
             Pokemons pokemons = new Pokemons()
@@ -33,7 +34,7 @@ namespace WEBSITE101.Repository
             }
                 return true;
         }
-
+        //Delete
         public bool DeletePokemon(int pokeId)
         {
             var pokemon = _context.Pokemons.Where(x => x.Id == pokeId).FirstOrDefault();
@@ -43,6 +44,7 @@ namespace WEBSITE101.Repository
                 return false;
             return true;
         }
+        //Update
         public bool UpdatePokemon(PokemonDto pokemon)
         {
          
@@ -57,7 +59,7 @@ namespace WEBSITE101.Repository
 
 
         }
-
+        //Read
         public PokemonDto GetPokemon(int id)
 
         {
