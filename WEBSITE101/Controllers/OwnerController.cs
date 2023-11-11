@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WEBSITE101.DTO;
 using WEBSITE101.Interface;
+using WEBSITE101.Model;
 
 namespace WEBSITE101.Controllers
 {
@@ -15,7 +16,7 @@ namespace WEBSITE101.Controllers
             _ownerRepository = ownerRepository;
         }
         [HttpGet]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Owner>))]
         public IActionResult GetOwner(int ownerId)
         {
             var exists = _ownerRepository.OwnerExists(ownerId);
@@ -25,6 +26,8 @@ namespace WEBSITE101.Controllers
             return Ok(owner);
         }
         [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public IActionResult AddOwner(OwnerDto ownerObj)
         {
             var owner = _ownerRepository.AddOwner(ownerObj);
@@ -32,18 +35,22 @@ namespace WEBSITE101.Controllers
                 return NotFound();
             return Ok();
         }
-        [HttpPut]
-        [ProducesResponseType(200)]
-        
+        [HttpPut("{ownerId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+
         public IActionResult UpdateOwner(OwnerDto ownerObj)
         {
-             var rowsAffected = _ownerRepository.UpdateOwner(ownerObj);
-            if(rowsAffected == false)
+            var rowsAffected = _ownerRepository.UpdateOwner(ownerObj);
+            if (rowsAffected == false)
                 return NotFound();
             return Ok();
         }
-        [HttpDelete]
-        [ProducesResponseType(200)]
+        [HttpDelete("{ownerId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public IActionResult DeleteOwner(int ownerId)
         {
             var result = _ownerRepository.DeleteOwner(ownerId);

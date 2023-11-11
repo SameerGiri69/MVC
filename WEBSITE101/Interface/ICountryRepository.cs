@@ -8,7 +8,7 @@ namespace WEBSITE101.Interface
         CountryDto GetCountryByName(string name);
         bool AddCountry(CountryDto countryDto);
         bool DeleteCountry(int countryId);
-        bool UpdateCountry(string countryName);
+        bool UpdateCountry(string countryName, int countryId);
         bool CountryExists(int countryId);
 
 

@@ -33,7 +33,7 @@ namespace WEBSITE101.Controllers
         public IActionResult GetCategory(int id)
         {
             var result = _categoryRepository.GetCategory(id);
-            if(result == null)
+            if (result == null)
                 return NotFound();
             return Ok(result);
         }
@@ -42,7 +42,7 @@ namespace WEBSITE101.Controllers
         public IActionResult UpdateCategory(CategoryDto categoryDto)
         {
             var result = _categoryRepository.UpdateCategory(categoryDto);
-            if(result == false)
+            if (result == false)
                 return NotFound();
             return Ok();
         }
@@ -51,7 +51,7 @@ namespace WEBSITE101.Controllers
         public IActionResult DeleteCategory(int id)
         {
             var result = _categoryRepository.DeleteCategory(id);
-            if(result == false) return NotFound();
+            if (result == false) return NotFound();
             return Ok();
         }
 

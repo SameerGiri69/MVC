@@ -18,7 +18,7 @@ namespace WEBSITE101.Repository
             country.Name = countrydto.Name;
             country.Id = countrydto.Id;
             var rowsAffected = _context.Countries.Add(country);
-            if (rowsAffected != null)
+            if (rowsAffected == null)
                 return false;
             return true;
         }
@@ -34,7 +34,9 @@ namespace WEBSITE101.Repository
         public bool DeleteCountry(int countryId)
         {
             var country =_context.Countries.Where(x => x.Id == countryId).FirstOrDefault();
-            _context.Remove(country);
+            if (country == null)
+                return false;
+               _context.Remove(country);
             var result = _context.SaveChanges();
             if (result < 0)
                 return false;
@@ -60,10 +62,11 @@ namespace WEBSITE101.Repository
             return (countryDto);
         }
 
-        public bool UpdateCountry(string countryName)
+        public bool UpdateCountry(string countryName, int countryId)
         {
-            var country = _context.Countries.Where(x => x.Name == countryName).FirstOrDefault();
+            var country = _context.Countries.Where(x => x.Id == countryId).FirstOrDefault();
             country.Name = countryName;
+            country.Id = countryId;
             var result = _context.SaveChanges();
             if(result < 0)
                 return false;
